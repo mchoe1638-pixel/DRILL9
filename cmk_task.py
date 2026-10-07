@@ -2,6 +2,10 @@ from pico2d import *
 
 TUK_WIDTH, TUK_HEIGHT = 1280, 1024
 SPEED = 10
+HALF_W, HALF_H = 25, 45
+
+def clamp(lo, v, hi):
+    return max(lo, min(v, hi))
 
 def handle_events():
     global running, dx, dy
@@ -54,8 +58,8 @@ while running:
     character.clip_draw(frame * 100, row, 100, 100, x, y)
     update_canvas()
     handle_events()
-    x += dx * SPEED
-    y += dy * SPEED
+    x = clamp(HALF_W, x + dx * SPEED, TUK_WIDTH - HALF_W)
+    y = clamp(HALF_H, y + dy * SPEED, TUK_HEIGHT - HALF_H)
     frame = (frame + 1) % 8
     delay(0.05)
 close_canvas()
