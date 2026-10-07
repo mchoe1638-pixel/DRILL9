@@ -2,6 +2,12 @@ from pico2d import *
 
 TUK_WIDTH, TUK_HEIGHT = 1280, 1024
 
+def handle_events():
+    global running
+    for event in get_events():
+        if event.type == SDL_QUIT:
+            running = False
+
 open_canvas(TUK_WIDTH, TUK_HEIGHT)
 tuk_ground = load_image('TUK_GROUND.png')
 
